@@ -28,8 +28,6 @@ class Sdl
 
         static Sdl* sdl;
 
-        bool isRunning = true;
-
         SDL_Event eventHandler;
 };
 

@@ -96,6 +96,11 @@ void Janela::loop()
         {
             plano->moverEsquerda();
         }
+        if( sdl->currentKeyStates[ SDL_SCANCODE_R] )
+        {
+            c->clearPontosC();
+        }
+
         switch (sdl->handleEvents())
         {
         case 0:
@@ -113,7 +118,8 @@ void Janela::loop()
 
         plano->desenharPlano();
 
-        c->incT();
+        for (int i = 0; i < 5; i++)  // Incrementando mais vezes para acelerar a velocidade de criação da curva sem aumentar frame rate
+            c->incT();
 
         SDL_Delay(10);
 

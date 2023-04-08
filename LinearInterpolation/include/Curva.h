@@ -14,19 +14,19 @@ class Curva {
         void addPonto(Ponto *p); // Adiciona ponto no vetor
 
         void lerp(); // Exibe Linhas na tela
-        void lerp(vector<Ponto*> ps);
 
-        void incT();
+        void incT(); // Incrementar Delta t
+        void clearPontosC(); // Limpa lista de pontos da curva
 
     private:
 
-        vector<Ponto*> pontos;
-        Plano *plano;
-        Renderer *renderer;
+        vector<Ponto*> pontos; // Pontos que criam a curva
+        Plano *plano; // ponteiro para o plano que a curva se localiza
+        Renderer *renderer; // ponteiro para o renderer da curva
 
-        vector<Ponto*> pCurva;
+        vector<Ponto*> pCurva; // Pontos da Curva
 
-        double t;
+        double t; // Delta t
 
 };
 

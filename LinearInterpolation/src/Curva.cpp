@@ -21,7 +21,7 @@ void Curva::addPonto(Ponto *p) {
     plano->normalizarPonto(p);
     pontos.push_back(p);
     t = 0.001;
-    pCurva.clear();
+    clearPontosC();
 
 }
 
@@ -32,16 +32,18 @@ void Curva::lerp() {
 
     vector<Ponto*> nP = pontos;
 
-    while (nP.size() != 2) {
+    while (nP.size() > 2) {
 
+
+        
         for (int i = 0; i < (nP.size() - 1); i++) {
-            
             if (nP.size() == pontos.size())
                 renderer->mudarCor(10);
             else
                 renderer->mudarCor(nP.size());
 
-            plano->desenharLinha(nP[i], nP[i+1]);
+            if (t < 1)
+                plano->desenharLinha(nP[i], nP[i+1]);
 
             double x = ( (1 - t) * (nP[i]->x) ) + ( t * (nP[i+1]->x) );
             double y = ( (1 - t) * (nP[i]->y) ) + ( t * (nP[i+1]->y) );
@@ -51,9 +53,11 @@ void Curva::lerp() {
         nP.pop_back();
     }
 
+
     renderer->mudarCor(2);
 
-    plano->desenharLinha(nP[0], nP[1]);
+    if (t < 1.0)
+        plano->desenharLinha(nP[0], nP[1]);
 
     double x = ( (1 - t) * (nP[0]->x) ) + ( t * (nP[1]->x) );
     double y = ( (1 - t) * (nP[0]->y) ) + ( t * (nP[1]->y) );
@@ -73,14 +77,19 @@ void Curva::incT() {
 
         t += 0.001;
         lerp();
-
     }
-
+    
     else {
-
-        t = 0.001;
-        pCurva.clear();
+        
+        lerp();
 
     }
+
+}
+
+void Curva::clearPontosC() {
+
+    t = 0.001;
+    pCurva.clear();
 
 }

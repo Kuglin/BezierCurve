@@ -16,7 +16,6 @@ class Ponto {
         
         Ponto(double x, double y);
 
-        void lerp(Ponto* p1, Ponto* p2, double t); // Interpolação Linear
 };
 
 

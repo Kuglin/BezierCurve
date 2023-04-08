@@ -39,37 +39,16 @@ Sdl *Sdl::criar()
     return sdl;
 }
 
-//Loop
-// void Sdl::RunLoop()
-// {
-//     while(isRunning)
-//     {
-//         //processar funcoes
-//         handleEvents();
-//         SDL_Delay(100);
-//     }
-// }
-
-//Parar Loop
-void Sdl::stopLoop()
-{
-    isRunning = false;
-    SDL_Quit();
-}
-
 int Sdl::handleEvents()
 {
     while( SDL_PollEvent( &eventHandler ) != 0 )
     {
         //User requests quit
         if( eventHandler.type == SDL_QUIT )
-        {
             return 0;
-        }
 
-        if( eventHandler.type == SDL_MOUSEBUTTONDOWN){
+        else if( eventHandler.type == SDL_MOUSEBUTTONDOWN)
             return 2;
-        }
     }
     return 1;
 }
